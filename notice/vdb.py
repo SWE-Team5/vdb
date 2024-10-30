@@ -25,7 +25,7 @@ def read_spreadsheet(spreadsheet_id, range_name):
 
 # 텍스트 임베딩 함수
 def get_embeddings(texts):
-    model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+    model = SentenceTransformer('sentence-transformers/xlm-r-100langs-bert-base-nli-stsb-mean-tokens')
     embeddings = model.encode(texts)
     return embeddings
 

@@ -4,7 +4,7 @@ from sentence_transformers import SentenceTransformer
 PINECONE_API_KEY = "1734fc56-9964-4232-a412-50e211980310"
 PINECONE_INDEX_NAME = "skku-notice"
 
-model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+model = SentenceTransformer('sentence-transformers/xlm-r-100langs-bert-base-nli-stsb-mean-tokens')
 
 def find_similar_notices(query):
     try:
@@ -30,5 +30,5 @@ def find_similar_notices(query):
         print(f"Pinecone 검색 중 오류 발생: {e}")
 
 # test
-test_query = "학사 취업"
+test_query = "소프트웨어학과 졸업 요건"
 find_similar_notices(test_query)
