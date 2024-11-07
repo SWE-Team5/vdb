@@ -30,5 +30,5 @@ def find_similar_notices(query):
         print(f"Pinecone 검색 중 오류 발생: {e}")
 
 # test
-test_query = "소프트웨어학과 졸업 요건"
+test_query = "물리학과 학사 공지"
 find_similar_notices(test_query)

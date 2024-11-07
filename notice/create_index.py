@@ -19,3 +19,11 @@ def update_index(index_name, dimension, metric):
     )
 
 update_index("skku-notice", 768, "cosine")
+
+
+pc.create_index(
+        name=index_name,
+        dimension=dimension,
+        score=score
+        metadata=metadata, # category content name notice_date title url
+    )
