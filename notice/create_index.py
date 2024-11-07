@@ -2,7 +2,6 @@ from pinecone import Pinecone, ServerlessSpec
 
 # for sentence-transformers/xlm-r-100langs-bert-base-nli-stsb
 
-
 def update_index(index_name, dimension, metric):
     pc = Pinecone(api_key="1734fc56-9964-4232-a412-50e211980310")
 
@@ -19,11 +18,3 @@ def update_index(index_name, dimension, metric):
     )
 
 update_index("skku-notice", 768, "cosine")
-
-
-pc.create_index(
-        name=index_name,
-        dimension=dimension,
-        score=score
-        metadata=metadata, # category content name notice_date title url
-    )
