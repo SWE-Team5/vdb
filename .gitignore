@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Conda
+conda-meta/
+*.conda
+.conda/
+
+# Project specific
+swengineer-e9e6a19f0a3d.json
+Miniconda3-latest-Linux-x86_64.sh*
+finetuned-kr-sbert-notice/
+finetuned-backup/
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite3
+
+# Model files
+*.pt
+*.pth
+*.bin
+*.h5
+
+# Cache
+.cache/
