@@ -11,6 +11,7 @@ notice/
 ├── test_query.py              # 검색 테스트 스크립트
 ├── create_index.py            # Pinecone 인덱스 생성
 ├── get_notice.py              # 공지사항 google spreadsheet에 추가
+├── vdb.py                     # pincone upload with finetuned model
 └── swengineer-e9e6a19f0a3d.json  # Google Sheets API 인증 파일
 ```
 

@@ -42,14 +42,7 @@ class NoticeSearcher:
             )
             
             print(f"\n검색 결과 - 질문: {query}\n")
-            for i, match in enumerate(results["matches"], 1):
-                print(f"[{i}번째 결과]")
-                print(f"제목: {match['metadata']['title']}")
-                print(f"부서: {match['metadata']['name']}")
-                print(f"날짜: {match['metadata']['notice_date']}")
-                print(f"URL: {match['metadata']['url']}")
-                print(f"유사도: {match['score']:.4f}")
-                print("-" * 50)
+
             
             return results
             
@@ -57,25 +50,32 @@ class NoticeSearcher:
             logger.error(f"Error during search: {e}")
             raise
 
-def main():
+def pinecone_main():
     try:
         searcher = NoticeSearcher()
         
         # test query
-        test_queries = [
-            "소프트웨어학과 졸업 관련 공지 있어?",
-            "현재 신청할 수 있는 장학금이 있을까요?",
-            "기숙사 관련 공지가 있어?",
-            "근로장학 공지사항을 알려줘",
-        ]
+        test_queries = "소프트웨어학과 졸업 관련 공지 있어?"
+            # "현재 신청할 수 있는 장학금이 있을까요?"
+            # "기숙사 관련 공지가 있어?"
+            # "근로장학 공지사항을 알려줘"
         
-        for query in test_queries:
-            searcher.find_similar_notices(query)
-            print("\n" + "="*70 + "\n")
+        ret = searcher.find_similar_notices(test_queries)
+        
+        for match in ret["matches"]:
+            print(f"제목: {match['metadata']['title']}")
+            print(f"부서: {match['metadata']['name']}")
+            print(f"날짜: {match['metadata']['notice_date']}")
+            print(f"URL: {match['metadata']['url']}")
+            print(f"유사도: {match['score']:.4f}")
+            print("-" * 50)
+            
+        print("\n" + "="*70 + "\n")
+        return ret
             
     except Exception as e:
         logger.error(f"Error in main: {e}")
         raise
 
 if __name__ == "__main__":
-    main()
+    pinecone_main()

@@ -4,6 +4,8 @@ from typing import List, Dict, Tuple
 import pandas as pd
 import random
 
+notice_name = ["skku", "cse", "physics", "ai", "biz", "dorm"]
+
 class NoticeTrainingDataGenerator:
     def __init__(self):
         # query-keyword mapping
@@ -12,28 +14,46 @@ class NoticeTrainingDataGenerator:
                 "title_keywords": ["졸업", "졸업요건", "졸업사정", "학사"],
                 "content_keywords": ["졸업", "이수", "학점", "필수과목", "소프트웨어", "컴퓨터"],
                 "dept_weights": {
-                    "cse": 0.9,
+                    "cse": 0.8,
                     "skku": 0.5,
-                    "ai": 0.4
+                    "ai": 0.6,
                 }
             },
             "장학금 신청 방법 알려줘": {
                 "title_keywords": ["장학", "장학금", "신청"],
                 "content_keywords": ["장학", "신청방법", "지원", "서류", "제출"],
                 "dept_weights": {
-                    "skku": 0.9,
+                    "skku": 0.8,
                     "cse": 0.6,
-                    "biz": 0.6
+                    "physics" : 0.6,
+                    "ai": 0.6,
+                    "biz": 0.6,
                 }
             },
             "기숙사 신청 언제해?": {
-                "title_keywords": ["기숙사", "생활관", "입사"],
-                "content_keywords": ["기숙사", "생활관", "신청기간", "모집", "선발"],
+                "title_keywords": ["기숙사", "생활관", "입사", "신관", "인관", "의관", "예관", "지관"],
+                "content_keywords": ["기숙사", "생활관", "신청기간", "모집", "선발", "신관", "인관", "의관", "예관", "지관"],
                 "dept_weights": {
                     "dorm": 0.9,
-                    "skku": 0.4
+                    "skku": 0.4,
                 }
-            }
+            },
+            "인공지능학과 관련 채용 연계 공지사항": {
+                "title_keywords": ["인공지능", "ai", "채용", "연계", "공고", "공지"],
+                "content_keywords": ["모집", "채용", "연계", "공고", "공지", "인공지능", "ai", "인재", "인력"],
+                "dept_weights": {
+                    "ai": 0.8,
+                    "skku": 0.5,
+                }
+            },
+            "물리학과 관련 대회가 있어?": {
+                "title_keywords": ["경진대회", "대회", "공모전", "공모", "대학생", "학술대회"],
+                "content_keywords": ["경진대회", "대회", "공모전", "공모", "대학생", "학술대회", "물리학", "물리", "모집", "참가", "지원", "신청"],
+                "dept_weights": {
+                    "physics": 0.8,
+                    "skku": 0.4,
+                }
+            },
         }
 
     def calculate_content_similarity_score(self, text: str, keywords: list) -> float:
