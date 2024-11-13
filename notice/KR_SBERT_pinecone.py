@@ -58,7 +58,7 @@ class NoticeVectorDB:
             raise
 
     def preprocess_text(self, row: pd.Series) -> str:
-        # 제목 가중치 부여
+        # 제목 가중치
         return f"{row['title']} {row['title']} {row['name']} {row['category']} {row['content']}"
 
     def get_embeddings(self, texts: list) -> torch.Tensor:
@@ -82,7 +82,6 @@ class NoticeVectorDB:
                 texts = [self.preprocess_text(row) for _, row in batch_df.iterrows()]
                 embeddings = self.get_embeddings(texts).cpu().numpy()
                 
-                # Pinecone에 업로드할 벡터 준비
                 vectors = [
                     {
                         "id": str(row['ArticleNo']),
@@ -175,7 +174,7 @@ class NoticeVectorDB:
 
 def main():
     try:
-        # VectorDB 초기화
+        # vector db 초기화
         logger.info("Initializing NoticeVectorDB...")
         vdb = NoticeVectorDB(
             api_key=PINECONE_API_KEY,

@@ -6,8 +6,6 @@ import torch
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-SERVICE_ACCOUNT_FILE = 'swengineer-e9e6a19f0a3d.json'
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 FINETUNED_MODEL_PATH = 'finetuned-kr-sbert-notice'  # fine-tuning model path
 PINECONE_API_KEY = "1734fc56-9964-4232-a412-50e211980310"
 PINECONE_INDEX_NAME = "skku-notice"
@@ -63,7 +61,7 @@ def main():
     try:
         searcher = NoticeSearcher()
         
-        # 테스트 쿼리들
+        # test query
         test_queries = [
             "소프트웨어학과 졸업 관련 공지 있어?",
             "현재 신청할 수 있는 장학금이 있을까요?",

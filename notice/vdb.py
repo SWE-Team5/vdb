@@ -7,6 +7,9 @@ from google.oauth2 import service_account
 
 SERVICE_ACCOUNT_FILE = 'swengineer-e9e6a19f0a3d.json'
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+FINETUNED_MODEL_PATH = 'finetuned-kr-sbert-notice'  # fine-tuning model path
+PINECONE_API_KEY = "1734fc56-9964-4232-a412-50e211980310"
+PINECONE_INDEX_NAME = "skku-notice"
 
 # Google Spreadsheet 데이터 읽기
 def read_spreadsheet(spreadsheet_id, range_name):
@@ -25,12 +28,12 @@ def read_spreadsheet(spreadsheet_id, range_name):
 
 # 텍스트 임베딩 함수
 def get_embeddings(texts):
-    model = SentenceTransformer('sentence-transformers/xlm-r-100langs-bert-base-nli-stsb-mean-tokens')
+    model = SentenceTransformer(FINETUNED_MODEL_PATH)
     embeddings = model.encode(texts)
     return embeddings
 
 def upload_to_pinecone(df, index_name):
-    pc = Pinecone(api_key="1734fc56-9964-4232-a412-50e211980310")
+    pc = Pinecone(api_key=PINECONE_API_KEY)
     index = pc.Index(index_name)
     
     batch_size = 100
@@ -40,13 +43,12 @@ def upload_to_pinecone(df, index_name):
         texts = [f"{row['name']} {row['content']}" for _, row in batch_df.iterrows()]
         embeddings = get_embeddings(texts)
         
-        # Pinecone에 업로드할 데이터 준비
         vectors = []
         for j, (_, row) in enumerate(batch_df.iterrows()):
             vectors.append({
                 "id": str(row['ArticleNo']),  # 고유 ID
                 "values": embeddings[j].tolist(),  # 벡터 값
-                "metadata": {  # 메타데이터
+                "metadata": { 
                     "name": row['name'],
                     "category": row['category'],
                     "title": row['title'],
@@ -70,5 +72,5 @@ if __name__ == "__main__":
     print(df.info())
     
     print("data loaded")
-    upload_to_pinecone(df, "skku-notice")
+    upload_to_pinecone(df, PINECONE_INDEX_NAME)
     print("data uploaded")
