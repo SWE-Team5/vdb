@@ -11,6 +11,8 @@ FINETUNED_MODEL_PATH = 'finetuned-kr-sbert-notice'  # fine-tuning model path
 PINECONE_API_KEY = "1734fc56-9964-4232-a412-50e211980310"
 PINECONE_INDEX_NAME = "skku-notice"
 
+model = SentenceTransformer(FINETUNED_MODEL_PATH)
+
 # Google Spreadsheet 데이터 읽기
 def read_spreadsheet(spreadsheet_id, range_name):
     creds = service_account.Credentials.from_service_account_file(
@@ -28,7 +30,6 @@ def read_spreadsheet(spreadsheet_id, range_name):
 
 # 텍스트 임베딩 함수
 def get_embeddings(texts):
-    model = SentenceTransformer(FINETUNED_MODEL_PATH)
     embeddings = model.encode(texts)
     return embeddings
 

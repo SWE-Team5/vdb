@@ -19,6 +19,16 @@ class NoticeTrainingDataGenerator:
                     "ai": 0.6,
                 }
             },
+            # 소프트웨어학과 줄임말인 솦에 대해서도 동일한 쿼리로 처리
+            "솦 졸업요건을 알려줘": {
+                "title_keywords": ["졸업", "졸업요건", "졸업사정", "학사"],
+                "content_keywords": ["졸업", "이수", "학점", "필수과목", "소프트웨어", "컴퓨터"],
+                "dept_weights": {
+                    "cse": 0.8,
+                    "skku": 0.5,
+                    "ai": 0.6,
+                }
+            },
             "장학금 신청 방법 알려줘": {
                 "title_keywords": ["장학", "장학금", "신청"],
                 "content_keywords": ["장학", "신청방법", "지원", "서류", "제출"],
