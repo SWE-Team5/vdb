@@ -16,9 +16,9 @@ PINECONE_INDEX_NAME = "skku-notice"
 # 이메일 설정
 MAIL_SERVER = "smtp.gmail.com"
 MAIL_PORT = 587
-SENDER_EMAIL = "hoeo159@gmail.com"
-APP_PASSWORD = "miminho?159"
-RECIPIENT_EMAIL = "your_email@example.com"  # 실제 사용할 이메일 주소로 변경하세요
+SENDER_EMAIL = ""
+APP_PASSWORD = ""
+RECIPIENT_EMAIL = "your_email@example.com"  # 실제 사용할 이메일 주소
 
 # 키워드 설정
 KEYWORDS = ["소프트웨어학과"]
