@@ -59,7 +59,7 @@ pip install tqdm
 
 ### 2. Google Sheets API 설정
 - Google Cloud Console에서 서비스 계정 생성
-- 생성된 JSON 키 파일을 'swengineer-e9e6a19f0a3d.json'으로 저장
+- 생성된 JSON 키 파일 저장
 - Google Sheets API 활성화
 
 ### 3. Pinecone 설정
